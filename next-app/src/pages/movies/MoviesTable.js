@@ -1,6 +1,7 @@
 // src/components/MoviesTable.js
 import React from "react";
 import styles from "./MoviesTable.module.css";
+import MovieComponent from "@/components/movie/MovieComponent";
 
 const MoviesTable = ({ movies }) => {
   return (
@@ -34,6 +35,18 @@ const MoviesTable = ({ movies }) => {
           ))}
         </tbody>
       </table>
+      <div>
+        {movies.map((movie, index) => (
+          <MovieComponent
+            key={index}
+            title={movie.title}
+            poster={movie.poster}
+            description={movie.description}
+            rating={movie.rating}
+            streamings={movie.streamings}
+          />
+        ))}
+      </div>
     </div>
   );
 };

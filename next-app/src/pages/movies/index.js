@@ -22,6 +22,8 @@ export const getServerSideProps = async () => {
       category: "Adventure",
       rating: 4.5,
       numberOfRatings: 1500,
+      poster: "next.svg",
+      streamings: ["/streaming_services/netflix.png"],
     },
     {
       title: "Mystery Manor",
@@ -32,6 +34,8 @@ export const getServerSideProps = async () => {
       category: "Mystery",
       rating: 4.8,
       numberOfRatings: 2000,
+      poster: "next.svg",
+      streamings: ["/streaming_services/netflix.png"],
     },
     {
       title: "Comedy Nights",
@@ -42,6 +46,8 @@ export const getServerSideProps = async () => {
       category: "Comedy",
       rating: 4.2,
       numberOfRatings: 750,
+      poster: "next.svg",
+      streamings: ["/streaming_services/netflix.png"],
     },
     {
       title: "Science Secrets",
@@ -52,6 +58,8 @@ export const getServerSideProps = async () => {
       category: "Documentary",
       rating: 4.9,
       numberOfRatings: 3000,
+      poster: "next.svg",
+      streamings: ["/streaming_services/netflix.png"],
     },
     {
       title: "Romantic Tales",
@@ -62,6 +70,8 @@ export const getServerSideProps = async () => {
       category: "Romance",
       rating: 4.6,
       numberOfRatings: 1800,
+      poster: "next.svg",
+      streamings: ["/streaming_services/netflix.png"],
     },
   ];
 
