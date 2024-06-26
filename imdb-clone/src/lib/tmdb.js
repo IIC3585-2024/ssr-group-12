@@ -28,3 +28,45 @@ export const fetchMovies = async (endpoint) => {
 export const fetchPoster = (posterPath, size = "w500") => {
   return `https://image.tmdb.org/t/p/${size}/${posterPath}`;
 };
+
+export const fetchSeries = async (endpoint) => {
+  const options = {
+    method: "GET",
+    url: "https://api.themoviedb.org/3/trending/tv/day?language=en-US",
+    params: { language: "en-US", page: "1" },
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  };
+
+  return axios
+    .request(options)
+    .then(function (response) {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+};
+
+export const fetchSeriesByName = (movieName) => {
+  const options = {
+    method: "GET",
+    url: BASE_URL + "/search/tv",
+    params: { query: movieName },
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  };
+
+  return axios
+    .request(options)
+    .then(function (response) {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+};
