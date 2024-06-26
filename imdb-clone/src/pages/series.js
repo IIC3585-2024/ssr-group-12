@@ -36,10 +36,11 @@ const HomePage = ({ series }) => {
 
   // Function to handle form submission
 
-  const fetchPosterByName = async (name) => {
-    const res = await fetchSeriesByName(name);
-    return await fetchPoster(res.results[0].poster_path);
-  };
+  // const fetchPosterByName = async (name) => {
+  //   const res = await fetchSeriesByName(name);
+  //   console.log(res);
+  //   return await fetchPoster(res.results[0].poster_path);
+  // };
 
   const refreshData = () => {
     router.replace(router.asPath);
@@ -94,11 +95,7 @@ const HomePage = ({ series }) => {
             href={`/serie/${serie.id}?name=${encodeURIComponent(serie.name)}`}
             key={serie.id}
           >
-            <SerieCard
-              key={serie.id}
-              serie={serie}
-              poster_path={fetchPosterByName(serie.name)}
-            />
+            <SerieCard key={serie.id} serie={serie} />
           </Link>
         ))}
       </div>

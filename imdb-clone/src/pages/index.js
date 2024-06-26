@@ -18,7 +18,6 @@ const Home = ({ popularMovies }) => {
       <nav className="flex justify-between items-center py-4">
         <h1 className="text-3xl font-bold text-white">Movie Finder</h1>
         <AuthForm />
-
       </nav>
 
       <h1 className="text-4xl font-bold my-8">Popular Movies</h1>

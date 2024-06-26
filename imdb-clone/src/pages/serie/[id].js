@@ -1,27 +1,21 @@
 import { fetchSeriesByName, fetchPoster } from "../../lib/tmdb";
 import SerieCard from "@/components/SerieCard";
-import { supabase } from "@/lib/supabase";
+import { supabase, fetchSupaSerie } from "@/lib/supabase";
 import { useState } from "react";
 
 export async function getServerSideProps(params) {
   // Fetch data from an API or database
-  const res = await fetchSeriesByName(params.query.name);
-
-  let series = res.results;
-
-  series.sort((a, b) => {
-    return b.popularity - a.popularity;
-  });
+  const res = await fetchSupaSerie(params.params.id);
+  console.log("res:", res);
 
   return {
     props: {
-      serie: series[0],
-      serie_id: params.query.id,
+      serie: res[0],
     },
   };
 }
 
-const Serie = ({ serie, serie_id }) => {
+const Serie = ({ serie }) => {
   const [commentText, setCommentText] = useState("");
   const [rating, setRating] = useState(0);
   const [comments, setComments] = useState([]);
@@ -31,11 +25,11 @@ const Serie = ({ serie, serie_id }) => {
   // Function to fetch comments for the series
   const fetchComments = async () => {
     try {
-      console.log("Fetching comments for serie_id:", serie_id);
+      console.log("Fetching comments for serie_id:", serie.id);
       const { data, error } = await supabase
         .from("comentarios")
         .select("*")
-        .eq("serie_id", serie_id);
+        .eq("serie_id", serie.id);
       if (error) {
         throw error;
       }
@@ -50,11 +44,11 @@ const Serie = ({ serie, serie_id }) => {
     event.preventDefault();
     try {
       const email = "scavagnaro@uc.cl";
-      console.log("serie_id:", serie_id);
+      console.log("serie_id:", serie.id);
       const { data, error } = await supabase.from("comentarios").insert([
         {
           coment: commentText,
-          serie_id: serie_id,
+          serie_id: serie.id,
           user_mail: email,
           rating,
         },
